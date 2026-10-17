@@ -13,3 +13,22 @@ uvicorn main:app --reload
 
 Test:
 pytest -q
+
+## Architecture
+
+![Architecture](docs/architecture.png)
+
+<details>
+<summary>Mermaid source</summary>
+
+```mermaid
+flowchart LR
+    A[Client] --> B[FastAPI Server]
+    B --> C{detect_gals}
+    C -->|Default Region| D[Return Event]
+    C -->|Other Region| E[Return Empty]
+    D --> F[HTTP 200]
+    E --> G[HTTP 404]
+```
+
+</details>
